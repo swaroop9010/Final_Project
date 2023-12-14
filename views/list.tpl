@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses and Students</title>
+    <title>Divisions and Company</title>
 </head>
 <style>
         body {
@@ -34,29 +34,27 @@
         }
 </style>
 <body>
-    <h2>Courses and Students</h2>
+    <h2>Divisions and Company</h2>
     <table border="1">
         <tr>
-            <th>Course ID</th>
-            <th>Student Name</th>
-            <th>Course Name</th>
-            <th>Department</th>
-            <th>Credits</th>
+            <th>Industry ID</th>
+            <th>Division Name</th>
+            <th>Company</th>
+            <th>Headquarter</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
         % for item in data:
             <tr>
-                <td>{{item['CourseID']}}</td>
-                <td>{{item['StudentName']}}</td>
-                <td>{{item['CourseName']}}</td>
-                <td>{{item['Department']}}</td>
-                <td>{{item['Credits']}}</td>
-                <td><a href="/update/{{item['CourseID']}}">Update</a></td>
-                <td><a href="/delete/{{item['CourseID']}}">Delete</a></td>
+                <td>{{item['IndustryID']}}</td>
+                <td>{{item['DivisionName']}}</td>
+                <td>{{item['Company']}}</td>
+                <td>{{item['Headquarter']}}</td>
+                <td><a href="/update/{{item['IndustryID']}}">Update</a></td>
+                <td><a href="/delete/{{item['IndustryID']}}">Delete</a></td>
             </tr>
         % end
     </table>
-    <a href="/add">Add a new course and student</a>
+    <a href="/add">Add a new industry and division</a>
 </body>
 </html>

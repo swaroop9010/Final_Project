@@ -1,34 +1,34 @@
 import sqlite3
 
-connection = sqlite3.connect("student_course_db.db")
+connection = sqlite3.connect("industry_division_db.db")  # Updated database name
 
 cursor = connection.cursor()
 
-# Fetch data from the 'courses' table
-cursor.execute("SELECT CourseID, CourseName, Department, Credits FROM courses")
-course_rows = list(cursor.fetchall())
+# Fetch data from the 'industries' table
+cursor.execute("SELECT IndustryID, Company, Headquarter FROM industries")
+industry_rows = list(cursor.fetchall())
 
-# Fetch data from the 'students' table
-cursor.execute("SELECT StudentID, StudentName, CourseID FROM students")
-student_rows = list(cursor.fetchall())
+# Fetch data from the 'divisions' table
+cursor.execute("SELECT DivisionID, DivisionName, IndustryID FROM divisions")
+division_rows = list(cursor.fetchall())
 
-print("Courses:")
-print(course_rows)
+print("Industries:")
+print(industry_rows)
 
-print("\nStudents:")
-print(student_rows)
+print("\nDivisions:")
+print(division_rows)
 
 # Combine the data into a single list of dictionaries
-course_data = [{'CourseID': row[0], 'CourseName': row[1], 'Department': row[2], 'Credits': row[3]} for row in course_rows]
-student_data = [{'StudentID': row[0], 'StudentName': row[1], 'CourseID': row[2]} for row in student_rows]
+industry_data = [{'IndustryID': row[0], 'Company': row[1], 'Headquarter': row[2]} for row in industry_rows]
+division_data = [{'DivisionID': row[0], 'DivisionName': row[1], 'IndustryID': row[2]} for row in division_rows]
 
 print("\nCombined Data:")
 combined_data = []
 
-for course in course_data:
-    related_students = [student for student in student_data if student['CourseID'] == course['CourseID']]
-    course_copy = course.copy()
-    course_copy['Students'] = related_students
-    combined_data.append(course_copy)
+for industry in industry_data:
+    related_divisions = [division for division in division_data if division['IndustryID'] == industry['IndustryID']]
+    industry_copy = industry.copy()
+    industry_copy['Divisions'] = related_divisions
+    combined_data.append(industry_copy)
 
 print(combined_data)

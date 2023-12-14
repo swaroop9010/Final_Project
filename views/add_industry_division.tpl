@@ -44,13 +44,13 @@
   </style>
 </head>
 <body>
-<h2>Add New Student and Course</h2>
+<h2>Add New Industry and Division</h2>
 <hr/>
 <form action="/add" method="post">
-  <p>Student Name: <input name="student_name" required/></p>
-  <p>Course Name: <input name="course_name" required/></p>
-  <p>Department: <input name="department" required/></p>
-  <p>Credits: <input name="credits" type="number" required/></p>
+  <p>Industry Name: <input name="industry_name" required/></p>
+  <p>Division Name: <input name="division_name" required/></p>
+  <p>Company: <input name="company" required/></p>
+  <p>Headquarter: <input name="headquarter" type="number" required/></p>
   <p><button type="submit">Submit</button></p>
 </form>
 <hr/>
