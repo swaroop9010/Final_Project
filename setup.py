@@ -1,53 +1,51 @@
 import sqlite3
 
-connection = sqlite3.connect("student_course_db.db")
+connection = sqlite3.connect("industry_division_db.db")  # Updated database name
 
 cursor = connection.cursor()
 
 try:
-    cursor.execute("DROP TABLE IF EXISTS courses")
-    cursor.execute("DROP TABLE IF EXISTS students")
+    cursor.execute("DROP TABLE IF EXISTS industries")
+    cursor.execute("DROP TABLE IF EXISTS divisions")
 except Exception as e:
     print(f"Error dropping tables: {e}")
 
-# Create the 'courses' table
+# Create the 'industries' table
 try:
-    cursor.execute("CREATE TABLE courses (CourseID INTEGER PRIMARY KEY, CourseName TEXT, Department TEXT, Credits INTEGER)")
+    cursor.execute("CREATE TABLE industries (IndustryID INTEGER PRIMARY KEY, Company TEXT, Headquarter TEXT)")
 except Exception as e:
-    print(f"Error creating 'courses' table: {e}")
+    print(f"Error creating 'industries' table: {e}")
 
-# Create the 'students' table
+# Create the 'divisions' table
 try:
-    cursor.execute("CREATE TABLE students (StudentID INTEGER PRIMARY KEY, StudentName TEXT, CourseID INTEGER, FOREIGN KEY (CourseID) REFERENCES courses(CourseID))")
+    cursor.execute("CREATE TABLE divisions (DivisionID INTEGER PRIMARY KEY, DivisionName TEXT, IndustryID INTEGER, FOREIGN KEY (IndustryID) REFERENCES industries(IndustryID))")
 except Exception as e:
-    print(f"Error creating 'students' table: {e}")
+    print(f"Error creating 'divisions' table: {e}")
 
-# Insert sample data into 'courses' table
-courses_data = [('Computer Science Basics', 'Computer Science', 3),
-                ('Microeconomics', 'Economics', 4),
-                ('English Literature', 'English', 3),
-                ('Calculus I', 'Mathematics', 4),
-                ('General Psychology', 'Psychology', 3)]
+# Insert sample data into 'industries' table
+industries_data = [('Apollo', 'Silicon Valley'),
+                   ('google', 'Wall Street'),
+                   ('Holiday Inn', 'London'),
+                   ('tesla', 'Cambridge')]
 
-for course_data in courses_data:
+for industry_data in industries_data:
     try:
-        cursor.execute("INSERT INTO courses (CourseName, Department, Credits) VALUES (?, ?, ?)", course_data)
+        cursor.execute("INSERT INTO industries (Company, Headquarter) VALUES (?, ?)", industry_data)
     except Exception as e:
-        print(f"Error inserting data into 'courses' table: {e}")
+        print(f"Error inserting data into 'industries' table: {e}")
 
-# Insert sample data into 'students' table
-students_data = [('John Doe', 1),
-                 ('Jane Smith', 2),
-                 ('Bob Johnson', 1),
-                 ('Alice Williams', 3),
-                 ('Charlie Brown', 4)]
+# Insert sample data into 'divisions' table
+divisions_data = [('Healthcare', 1),
+                  ('Information Technology', 2),
+                  ('hospitality', 3),
+                  ('manufacturing', 4)]
 
-for student_data in students_data:
+for division_data in divisions_data:
     try:
-        cursor.execute("INSERT INTO students (StudentName, CourseID) VALUES (?, ?)", student_data)
+        cursor.execute("INSERT INTO divisions (DivisionName, IndustryID) VALUES (?, ?)", division_data)
     except Exception as e:
-        print(f"Error inserting data into 'students' table: {e}")
+        print(f"Error inserting data into 'divisions' table: {e}")
 
 connection.commit()
 connection.close()
-print("done.")
+print("Divisions and Company")  # Updated print statement

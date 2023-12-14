@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Update Course and Student</title>
+    <title>Update Industry and Division</title>
     <style>
         body {
             display: flex;
@@ -47,23 +47,20 @@
     </style>
 </head>
 <body>
-    <h2>Update Course and Student</h2>
+    <h2>Update Industry and Division</h2>
 
     <form action="/update" method="post">
-        <!-- Add a hidden input field for the course ID -->
-        <input type="hidden" name="id" value="{{str(item['CourseID'])}}"/>
+        <!-- Add a hidden input field for the industry ID -->
+        <input type="hidden" name="id" value="{{str(item['IndustryID'])}}"/>
 
-        <label for="student_name">Student Name:</label>
-        <input type="text" name="student_name" value="{{item['StudentName']}}" required/>
+        <label for="division_name">Division Name:</label>
+        <input type="text" name="division_name" value="{{item['DivisionName']}}" required/>
 
-        <label for="course_name">Course Name:</label>
-        <input type="text" name="course_name" value="{{item['CourseName']}}" required/>
+        <label for="company">Company:</label>
+        <input type="text" name="company" value="{{item['Company']}}" required/>
 
-        <label for="department">Department:</label>
-        <input type="text" name="department" value="{{item['Department']}}" required/>
-
-        <label for="credits">Credits:</label>
-        <input type="text" name="credits" value="{{item['Credits']}}" required/>
+        <label for="headquarter">Headquarter:</label>
+        <input type="text" name="headquarter" value="{{item['Headquarter']}}" required/>
 
         <button type="submit">Update</button>
     </form>
